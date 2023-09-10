@@ -1,26 +1,41 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import Transactions from "@/pages/transactions/Transactions.vue";
+import LogIn from "@/pages/log-in/LogIn.vue";
+import { getAccessToken, isLoggedIn } from "@/classes/utils";
+
+export enum RouteName {
+  Transactions = "transactions",
+  LogIn = "log-in",
+}
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: RouteName.Transactions,
+    component: Transactions,
+    meta: { requiresAuth: true },
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/log-in",
+    name: RouteName.LogIn,
+    component: LogIn,
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  if (to.name === RouteName.LogIn && isLoggedIn()) {
+    next({ name: RouteName.Transactions });
+  } else if (requiresAuth && !isLoggedIn()) {
+    next({ name: RouteName.LogIn });
+  } else {
+    next();
+  }
 });
 
 export default router;
