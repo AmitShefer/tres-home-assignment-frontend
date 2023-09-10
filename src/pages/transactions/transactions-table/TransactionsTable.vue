@@ -29,7 +29,7 @@
           <p>{{ transaction.to }}</p>
         </td>
         <td>
-          <p>{{ transaction.value }}</p>
+          <p>{{ transaction.value }} ETH</p>
         </td>
         <td>
           <p>{{ transaction.fee }}</p>
