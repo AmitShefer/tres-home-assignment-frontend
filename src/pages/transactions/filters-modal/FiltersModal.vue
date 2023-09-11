@@ -147,7 +147,6 @@ export default class FiltersModal extends Vue {}
 </script>
 <style scoped>
 .input-title {
-  font-size: 15px;
   margin-bottom: 10px;
 }
 .inputs-container {
@@ -172,15 +171,10 @@ export default class FiltersModal extends Vue {}
 .input-separator {
   display: flex;
   color: #555;
-  margin-top: 30px;
   height: 100%;
   align-items: center;
   justify-content: center;
   width: 40px;
-}
-.input-separator:before {
-  text-align: center;
-  content: "-";
 }
 .submit-button {
   margin-top: 5px;

@@ -29,7 +29,7 @@ import { Options, Vue } from "vue-class-component";
 import { callRequest, POST } from "@/classes/network-caller";
 import { LogInResponseModel } from "@/classes/types";
 import router, { RouteName } from "@/router";
-import { setAccessToken } from "@/classes/utils";
+import { storeAccessToken } from "@/classes/utils";
 declare interface DataModel {
   email: string;
   password: string;
@@ -52,7 +52,7 @@ declare interface DataModel {
         },
       }).then((response) => {
         const responseData = response.data;
-        setAccessToken(responseData.access_token);
+        storeAccessToken(responseData.access_token);
         this.$store.commit("setCurrentUser", responseData.user);
         router.push({ name: RouteName.Transactions });
       });

@@ -1,9 +1,9 @@
 <template>
   <div class="nav-bar-container">
     <div class="nav-bar-content page-width">
-      <div>
+      <router-link to="/">
         <img src="/assets/images/tres-logo.svg" />
-      </div>
+      </router-link>
       <div v-if="currentUser">
         <div class="user-container">
           <img

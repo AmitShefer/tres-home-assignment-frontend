@@ -126,7 +126,7 @@ export default class CreateTransactionModal extends Vue {}
   justify-content: space-between;
 }
 .input-container {
-  width: 48%;
+  width: 45%;
   margin-bottom: 20px;
 }
 .input-container p {

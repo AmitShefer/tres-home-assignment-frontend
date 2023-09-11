@@ -40,9 +40,9 @@
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { formatDate } from "@/classes/time-helper";
 import { UserTransaction } from "@/classes/types";
 import { PropType } from "vue";
+import moment from "moment";
 @Options({
   props: {
     userTransactions: {
@@ -51,7 +51,9 @@ import { PropType } from "vue";
     },
   },
   methods: {
-    formatDate,
+    formatDate(dateString: string): string {
+      return moment(dateString).local().format("DD-MM-YYYY HH:mm:ss");
+    },
   },
 })
 export default class TransactionsTable extends Vue {}

@@ -24,7 +24,7 @@
       <div class="loading-indicator"></div>
     </div>
     <transactions-table
-      v-else
+      v-if="!isLoading && userTransactions.length > 0"
       :user-transactions="userTransactions"
     ></transactions-table>
   </div>
@@ -33,7 +33,6 @@
 import { Options, Vue } from "vue-class-component";
 import { callRequest, GET } from "@/classes/network-caller";
 import { UserTransaction } from "@/classes/types";
-import { formatDate } from "@/classes/time-helper";
 import TransactionsTable from "@/pages/transactions/transactions-table/TransactionsTable.vue";
 import FiltersModal from "@/pages/transactions/filters-modal/FiltersModal.vue";
 import CreateTransactionModal from "@/pages/transactions/create-transaction-modal/CreateTransactionModal.vue";
@@ -73,7 +72,6 @@ declare interface DataModel {
         this.userTransactions = response.data;
       });
     },
-    formatDate,
   },
   components: {
     CreateTransactionModal,

@@ -7,7 +7,7 @@ export const getAccessToken = (): string | null => {
   return localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY) || null;
 };
 
-export const setAccessToken = (accessToken: string) => {
+export const storeAccessToken = (accessToken: string) => {
   localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
 };
 
